@@ -17,7 +17,6 @@ import urllib.request
 from osu_apy_v2 import OsuApiV2
 from rosu_pp_py import Beatmap, Calculator
 import aiohttp
-from server import keep_alive
 
 TOKEN = os.environ['discord_TOKEN']
 api = OsuApiV2(client_id=os.environ['client_id'],
@@ -2139,13 +2138,6 @@ async def nboff(ctx):
     cuser = await bot.fetch_user(ctx.author.id)
     print("コマンドが使用されました：.nboff [ {} ]".format(cuser))
 
-
-try:
-    keep_alive()
-    bot.run(TOKEN)
-    print("RESTARTING NOW...\n\n")
-    os.system("kill 1")
-except Exception:
-    print("\n\nBLOCKED BY RATE LIMITS")
-    print("RESTARTING NOW...\n\n")
-    os.system("kill 1")
+    
+bot.run(TOKEN)
+  
